@@ -1,0 +1,12 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="Lab1_PU" transaction-type="RESOURCE_LOCAL">
+        <class>com.sukhee.eacourse.lab1.entity.Car</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://db.src.orb.local:3306/lab1db"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="my_root_password"/>
+<!--            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
