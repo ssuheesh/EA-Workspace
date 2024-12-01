@@ -11,7 +11,7 @@ public class Car {
     private String make;
     private int year;
     private int mileage;
-    @OneToOne(mappedBy = "car")
+    @OneToOne(mappedBy = "car", fetch = FetchType.EAGER)
     private Person owner;
     @OneToOne
     @JoinColumn(name="driver_person_id")

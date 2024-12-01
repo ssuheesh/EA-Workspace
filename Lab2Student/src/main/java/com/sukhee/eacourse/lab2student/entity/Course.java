@@ -2,30 +2,29 @@ package com.sukhee.eacourse.lab2student.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="course")
-@SecondaryTable(name="room", pkJoinColumns = {@PrimaryKeyJoinColumn(name="course_id")})
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Can use SINGLE_TABLE, JOINED, or TABLE_PER_CLASS
+@DiscriminatorColumn(name = "course_type", discriminatorType = DiscriminatorType.STRING)
 public class Course {
     @Id@GeneratedValue private int id;
     private String title;
-    private int capacity;
-    @Column(table="room")
-    private String room;
-    @Column(unique = true, nullable = false, name = "CODE")
-    private String number;
+    private LocalDate startDate;
+    private String professorName;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.REFRESH)
+    @JoinTable(name="course_students")
     private List<Student> students;
 
     public Course() {}
-    public Course(String title, int capacity, String room, String number) {
+    public Course(String title, LocalDate startDate, String professorName) {
         this.title = title;
-        this.capacity = capacity;
-        this.room = room;
-        this.number = number;
+        this.startDate = startDate;
+        this.professorName = professorName;
     }
     public int getId() {
         return id;
@@ -35,32 +34,24 @@ public class Course {
         return title;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
+    }
+
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public List<Student> getStudents() {
@@ -83,10 +74,7 @@ public class Course {
         return "Course{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", capacity=" + capacity +
-                ", room='" + room + '\'' +
-                ", number='" + number + '\'' +
-                ", students=" + students +
+//                ", students=" + students +
                 '}';
     }
 }

@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
+
 public class CourseRepository{
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -14,16 +16,18 @@ public class CourseRepository{
 
     public CourseRepository(EmfSingleton emfSingleton) {
         emf = emfSingleton.getEmf();
-        em = emfSingleton.getEm();
+        em=emfSingleton.getEm();
     }
 
     private void startTransaction() {
+//        em = emf.createEntityManager();
         tx = em.getTransaction();
         tx.begin();
     }
 
     private void endTransaction() {
         tx.commit();
+//        em.close();
     }
 
     public void create(Course course) {
@@ -58,6 +62,13 @@ public class CourseRepository{
         startTransaction();
         em.remove(course);
         endTransaction();
+    }
+
+    public List<Course> findAll(){
+        startTransaction();
+        List<Course> courses = em.createQuery("from Course").getResultList();
+        endTransaction();
+        return courses;
     }
 
 }

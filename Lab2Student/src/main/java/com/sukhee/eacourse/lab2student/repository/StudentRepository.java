@@ -17,12 +17,26 @@ public class StudentRepository{
     }
 
     private void startTransaction() {
+//        em = emf.createEntityManager();
         tx = em.getTransaction();
         tx.begin();
     }
 
     private void endTransaction() {
         tx.commit();
+//        em.close();
+    }
+
+    public void createIfNotExists(Student student) {
+        startTransaction();
+        System.out.println("Trying to persist: " + student);
+        try {
+            em.persist(student);
+        } catch (Exception e) {
+            System.err.println("Error persisting student: " + e.getMessage());
+        }
+
+        endTransaction();
     }
 
     public void create(Student student) {
