@@ -1,11 +1,10 @@
-package com.sukhee.eacourse.lab2student.repository;
+package com.sukhee.eacourse.labstudent.repository;
 
-import com.sukhee.eacourse.lab2student.entity.Course;
-import com.sukhee.eacourse.lab2student.entity.Student;
+import com.sukhee.eacourse.labstudent.entity.Course;
+import com.sukhee.eacourse.labstudent.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
 
 import java.util.List;
 

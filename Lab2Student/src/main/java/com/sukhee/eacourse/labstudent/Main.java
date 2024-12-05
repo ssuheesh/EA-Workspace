@@ -1,10 +1,9 @@
-package com.sukhee.eacourse.lab2student;
+package com.sukhee.eacourse.labstudent;
 
-import com.sukhee.eacourse.lab2student.entity.*;
-import com.sukhee.eacourse.lab2student.repository.CourseRepository;
-import com.sukhee.eacourse.lab2student.repository.EmfSingleton;
-import com.sukhee.eacourse.lab2student.repository.StudentRepository;
-import jakarta.persistence.Query;
+import com.sukhee.eacourse.labstudent.entity.*;
+import com.sukhee.eacourse.labstudent.repository.CourseRepository;
+import com.sukhee.eacourse.labstudent.repository.EmfSingleton;
+import com.sukhee.eacourse.labstudent.repository.StudentRepository;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 
@@ -23,7 +22,6 @@ public class Main {
                     "WHERE s.gpa > :gpa " +
                     "AND TYPE(c) = OnCampusCourse " +
                     "AND c.capacity > :capacity";
-//            String jpql = "SELECT s FROM Student s ";
             System.out.println("Query JPQL: ");
             TypedQuery<Student> query = emf.getEm().createQuery(jpql, Student.class);
             query.setParameter("gpa", 30);
@@ -32,6 +30,7 @@ public class Main {
             Stream.of(result).forEach(System.out::println);
 
             //Named Query:
+            emf.getEm().getTransaction().begin();
             System.out.println("Query NamedQuery Test: ");
             TypedQuery<Student> query2 =
                     emf.getEm().createNamedQuery("Student.findStudents", Student.class);
@@ -46,6 +45,13 @@ public class Main {
             System.out.println("Result2: ");
             query2b.setParameter("totalCoursesAttended", 1);
             query2b.getResultStream().forEach(System.out::println);
+            List<Student> result2 = query.getResultList();
+            for (Student student : result2) {
+                student.setName(student.getName() + " updated");
+            }
+//            System.out.println("CACHE --> " + emf.getEmf().getCache());
+
+            emf.getEm().getTransaction().commit();
 
             // CriQuery:
             // CriteriaBuilder, select root, join with AttendingCourse, check if DE and Professor name is Najeeb

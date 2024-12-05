@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sukhee.eacourse.lab2student</groupId>
-    <artifactId>Lab2Student</artifactId>
+    <artifactId>LabStudent</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

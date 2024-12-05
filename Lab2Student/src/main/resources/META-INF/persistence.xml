@@ -1,15 +1,17 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="Lab2Student_PU" transaction-type="RESOURCE_LOCAL">
-<!--        <class>com.sukhee.eacourse.lab2student.entity.Student</class>-->
-<!--        <class>com.sukhee.eacourse.lab2student.entity.Course</class>-->
+<!--        <class>com.sukhee.eacourse.labstudent.entity.Student</class>-->
+<!--        <class>com.sukhee.eacourse.labstudent.entity.Course</class>-->
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://db.src.orb.local:3306/lab2studentdb"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="my_root_password"/>
             <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+            <property name="jakarta.persistence.sharedCache.mode" value="DISABLE_SELECTIVE" />
+
             <property name="hibernate.show_sql" value="true"/>
-<!--            <property name="hibernate.format_sql" value="true"/>-->
+            <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
         </properties>
     </persistence-unit>

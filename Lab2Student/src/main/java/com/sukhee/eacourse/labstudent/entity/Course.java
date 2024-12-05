@@ -1,4 +1,4 @@
-package com.sukhee.eacourse.lab2student.entity;
+package com.sukhee.eacourse.labstudent.entity;
 
 import jakarta.persistence.*;
 

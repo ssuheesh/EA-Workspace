@@ -1,4 +1,4 @@
-package com.sukhee.eacourse.lab2student.entity;
+package com.sukhee.eacourse.labstudent.entity;
 
 import jakarta.persistence.*;
 
@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("distanceEducation")
+@Cacheable(false)
 public class DistanceEducationCourse extends Course {
 
     private String examProfessor;

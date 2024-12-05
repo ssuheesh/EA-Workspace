@@ -1,10 +1,8 @@
-package com.sukhee.eacourse.lab2student.repository;
+package com.sukhee.eacourse.labstudent.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
-import java.io.Serializable;
 
 public class EmfSingleton implements AutoCloseable {
     private EntityManagerFactory emf;
