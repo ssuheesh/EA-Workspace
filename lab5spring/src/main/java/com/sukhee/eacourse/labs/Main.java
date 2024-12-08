@@ -10,5 +10,9 @@ public class Main {
         game.play();
         context.close(); //to close I needed ClassPathXmlApplicationContext;
         System.out.println("Application ended.");
+
+        System.out.println(context.getBean("car", Car.class));
+        System.out.println(context.getBean("car", Car.class));
+        System.out.println(context.getBean("car", Car.class));
     }
 }

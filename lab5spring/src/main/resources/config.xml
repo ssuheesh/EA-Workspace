@@ -6,4 +6,5 @@
     <bean name="game" class="com.sukhee.eacourse.labs.Game" destroy-method="destroy">
         <constructor-arg ref="vehicle"/>
     </bean>
+    <bean id="car" class="com.sukhee.eacourse.labs.CarFactory" />
 </beans>
